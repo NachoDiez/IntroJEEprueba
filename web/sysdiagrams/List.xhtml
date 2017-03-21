@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSysdiagramsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSysdiagramsEmpty}" rendered="#{sysdiagramsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{sysdiagramsController.items.rowCount > 0}">
+                    <h:outputText value="#{sysdiagramsController.pagination.pageFirstItem + 1}..#{sysdiagramsController.pagination.pageLastItem + 1}/#{sysdiagramsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{sysdiagramsController.previous}" value="#{bundle.Previous} #{sysdiagramsController.pagination.pageSize}" rendered="#{sysdiagramsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{sysdiagramsController.next}" value="#{bundle.Next} #{sysdiagramsController.pagination.pageSize}" rendered="#{sysdiagramsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{sysdiagramsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSysdiagramsTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSysdiagramsTitle_principalId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.principalId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSysdiagramsTitle_diagramId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.diagramId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSysdiagramsTitle_version}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.version}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSysdiagramsTitle_definition}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.definition}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{sysdiagramsController.prepareView}" value="#{bundle.ListSysdiagramsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{sysdiagramsController.prepareEdit}" value="#{bundle.ListSysdiagramsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{sysdiagramsController.destroy}" value="#{bundle.ListSysdiagramsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{sysdiagramsController.prepareCreate}" value="#{bundle.ListSysdiagramsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSysdiagramsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

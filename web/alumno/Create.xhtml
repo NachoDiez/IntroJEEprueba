@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAlumnoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAlumnoLabel_idAlumno}" for="idAlumno" />
+                    <h:inputText id="idAlumno" value="#{alumnoController.selected.idAlumno}" title="#{bundle.CreateAlumnoTitle_idAlumno}" required="true" requiredMessage="#{bundle.CreateAlumnoRequiredMessage_idAlumno}"/>
+                    <h:outputLabel value="#{bundle.CreateAlumnoLabel_nombreAlumno}" for="nombreAlumno" />
+                    <h:inputText id="nombreAlumno" value="#{alumnoController.selected.nombreAlumno}" title="#{bundle.CreateAlumnoTitle_nombreAlumno}" required="true" requiredMessage="#{bundle.CreateAlumnoRequiredMessage_nombreAlumno}"/>
+                    <h:outputLabel value="#{bundle.CreateAlumnoLabel_apellidoAlumno}" for="apellidoAlumno" />
+                    <h:inputText id="apellidoAlumno" value="#{alumnoController.selected.apellidoAlumno}" title="#{bundle.CreateAlumnoTitle_apellidoAlumno}" required="true" requiredMessage="#{bundle.CreateAlumnoRequiredMessage_apellidoAlumno}"/>
+                    <h:outputLabel value="#{bundle.CreateAlumnoLabel_direccionAlumno}" for="direccionAlumno" />
+                    <h:inputText id="direccionAlumno" value="#{alumnoController.selected.direccionAlumno}" title="#{bundle.CreateAlumnoTitle_direccionAlumno}" required="true" requiredMessage="#{bundle.CreateAlumnoRequiredMessage_direccionAlumno}"/>
+                    <h:outputLabel value="#{bundle.CreateAlumnoLabel_telefonoAlumno}" for="telefonoAlumno" />
+                    <h:inputText id="telefonoAlumno" value="#{alumnoController.selected.telefonoAlumno}" title="#{bundle.CreateAlumnoTitle_telefonoAlumno}" required="true" requiredMessage="#{bundle.CreateAlumnoRequiredMessage_telefonoAlumno}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{alumnoController.create}" value="#{bundle.CreateAlumnoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{alumnoController.prepareList}" value="#{bundle.CreateAlumnoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAlumnoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

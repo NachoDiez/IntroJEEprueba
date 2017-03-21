@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDetallesCursoAlumnoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDetallesCursoAlumnoLabel_idDetalleCurso}" for="idDetalleCurso" />
+                    <h:inputText id="idDetalleCurso" value="#{detallesCursoAlumnoController.selected.idDetalleCurso}" title="#{bundle.EditDetallesCursoAlumnoTitle_idDetalleCurso}" required="true" requiredMessage="#{bundle.EditDetallesCursoAlumnoRequiredMessage_idDetalleCurso}"/>
+                    <h:outputLabel value="#{bundle.EditDetallesCursoAlumnoLabel_idAlumno}" for="idAlumno" />
+                    <h:selectOneMenu id="idAlumno" value="#{detallesCursoAlumnoController.selected.idAlumno}" title="#{bundle.EditDetallesCursoAlumnoTitle_idAlumno}" >
+                        <f:selectItems value="#{alumnoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDetallesCursoAlumnoLabel_idCurso}" for="idCurso" />
+                    <h:selectOneMenu id="idCurso" value="#{detallesCursoAlumnoController.selected.idCurso}" title="#{bundle.EditDetallesCursoAlumnoTitle_idCurso}" >
+                        <f:selectItems value="#{cursoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{detallesCursoAlumnoController.update}" value="#{bundle.EditDetallesCursoAlumnoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDetallesCursoAlumnoViewLink}"/>
+                <br />
+                <h:commandLink action="#{detallesCursoAlumnoController.prepareList}" value="#{bundle.EditDetallesCursoAlumnoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDetallesCursoAlumnoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

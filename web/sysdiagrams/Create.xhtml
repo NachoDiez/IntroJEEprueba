@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSysdiagramsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSysdiagramsLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{sysdiagramsController.selected.name}" title="#{bundle.CreateSysdiagramsTitle_name}" required="true" requiredMessage="#{bundle.CreateSysdiagramsRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.CreateSysdiagramsLabel_principalId}" for="principalId" />
+                    <h:inputText id="principalId" value="#{sysdiagramsController.selected.principalId}" title="#{bundle.CreateSysdiagramsTitle_principalId}" required="true" requiredMessage="#{bundle.CreateSysdiagramsRequiredMessage_principalId}"/>
+                    <h:outputLabel value="#{bundle.CreateSysdiagramsLabel_diagramId}" for="diagramId" />
+                    <h:inputText id="diagramId" value="#{sysdiagramsController.selected.diagramId}" title="#{bundle.CreateSysdiagramsTitle_diagramId}" required="true" requiredMessage="#{bundle.CreateSysdiagramsRequiredMessage_diagramId}"/>
+                    <h:outputLabel value="#{bundle.CreateSysdiagramsLabel_version}" for="version" />
+                    <h:inputText id="version" value="#{sysdiagramsController.selected.version}" title="#{bundle.CreateSysdiagramsTitle_version}" />
+                    <h:outputLabel value="#{bundle.CreateSysdiagramsLabel_definition}" for="definition" />
+                    <h:inputTextarea rows="4" cols="30" id="definition" value="#{sysdiagramsController.selected.definition}" title="#{bundle.CreateSysdiagramsTitle_definition}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{sysdiagramsController.create}" value="#{bundle.CreateSysdiagramsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{sysdiagramsController.prepareList}" value="#{bundle.CreateSysdiagramsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSysdiagramsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDetallesProfesornivelFormativoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDetallesProfesornivelFormativoEmpty}" rendered="#{detallesProfesornivelFormativoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{detallesProfesornivelFormativoController.items.rowCount > 0}">
+                    <h:outputText value="#{detallesProfesornivelFormativoController.pagination.pageFirstItem + 1}..#{detallesProfesornivelFormativoController.pagination.pageLastItem + 1}/#{detallesProfesornivelFormativoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{detallesProfesornivelFormativoController.previous}" value="#{bundle.Previous} #{detallesProfesornivelFormativoController.pagination.pageSize}" rendered="#{detallesProfesornivelFormativoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{detallesProfesornivelFormativoController.next}" value="#{bundle.Next} #{detallesProfesornivelFormativoController.pagination.pageSize}" rendered="#{detallesProfesornivelFormativoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{detallesProfesornivelFormativoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesProfesornivelFormativoTitle_idDetalle}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDetalle}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesProfesornivelFormativoTitle_idNivelFormativo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNivelFormativo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetallesProfesornivelFormativoTitle_idProfesor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProfesor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{detallesProfesornivelFormativoController.prepareView}" value="#{bundle.ListDetallesProfesornivelFormativoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detallesProfesornivelFormativoController.prepareEdit}" value="#{bundle.ListDetallesProfesornivelFormativoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detallesProfesornivelFormativoController.destroy}" value="#{bundle.ListDetallesProfesornivelFormativoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{detallesProfesornivelFormativoController.prepareCreate}" value="#{bundle.ListDetallesProfesornivelFormativoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDetallesProfesornivelFormativoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
